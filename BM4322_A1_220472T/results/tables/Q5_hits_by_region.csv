@@ -1,0 +1,5 @@
+region,local_real_%,local_shuffled_%,statistical_real_%,statistical_shuffled_%
+-100 to -26,98.59,97.7,77.59,79.11
+-25 to -14,1.11,1.51,16.08,12.53
+-13 to -9,0.0,0.4,1.61,5.13
+-8 to -6,0.3,0.24,4.72,3.23

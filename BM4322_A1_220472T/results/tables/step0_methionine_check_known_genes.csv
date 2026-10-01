@@ -1,0 +1,10 @@
+gene,locus_tag,last12_upstream_and_start_codon,translated_N_terminus,protein_length_table,translated_length,check
+murJ,IUJ38_RS00010,aatacaaaagaa ATG,MNLLKSLAAV,511,511,OK
+rpoD,IUJ38_RS10490,ggataccgtctt ATG,MEQNPQSQLK,615,615,OK
+crp,IUJ38_RS11775,ggataaccgcgc ATG,MVLGKPQTDP,210,210,OK
+hns,IUJ38_RS02980,gagattactaca ATG,MSEALKILNN,137,137,OK
+fis,IUJ38_RS11365,gctgacagaact ATG,MFEQRVNSDV,98,98,OK
+ompC,IUJ38_RS01830,aaggcatataaa ATG,MKKVVVLSAV,372,372,OK
+hilA,IUJ38_RS08775,tacactattatc ATG,MPHFNPVPVS,553,553,OK
+tolC,IUJ38_RS10355,tcacaacaagga ATG,MQMKKLLPIL,491,491,OK
+trpA,IUJ38_RS02860,aggggaaatctg ATG,MERYENLFAQ,268,268,OK

@@ -1,0 +1,96 @@
+======================================================================
+STEP 0 - data and sequence extraction
+======================================================================
+Genome CP064385.1: 4,857,492 bp, GC content 52.22%
+Protein table: 4850 genes, types: {'protein-coding': 4612, 'pseudogene': 113, 'tRNA': 86, 'rRNA': 22, 'ncRNA': 13, 'other': 2, 'antisense_RNA': 1, 'RNase_P_RNA': 1}
+On the chromosome: 4733 genes (+ strand 2280, - strand 2453)
+Protein-coding genes on the + strand: 2153
+I use the first 1000: murJ (starts at 571) to acpT (ends at 2496884)
+A/T content of the upstream regions: 54.9% (whole genome 47.8%)
+
+Methionine check on known genes (last 12 upstream bases + start codon):
+  murJ  aatacaaaagaa ATG -> MNLLKSLAAV...  length 511 aa (table 511)
+  rpoD  ggataccgtctt ATG -> MEQNPQSQLK...  length 615 aa (table 615)
+  crp   ggataaccgcgc ATG -> MVLGKPQTDP...  length 210 aa (table 210)
+  hns   gagattactaca ATG -> MSEALKILNN...  length 137 aa (table 137)
+  fis   gctgacagaact ATG -> MFEQRVNSDV...  length 98 aa (table 98)
+  ompC  aaggcatataaa ATG -> MKKVVVLSAV...  length 372 aa (table 372)
+  hilA  tacactattatc ATG -> MPHFNPVPVS...  length 553 aa (table 553)
+  tolC  tcacaacaagga ATG -> MQMKKLLPIL...  length 491 aa (table 491)
+  trpA  aggggaaatctg ATG -> MERYENLFAQ...  length 268 aa (table 268)
+  not matching the table: IUJ38_RS08235 IS3 family transposase
+Start codons of the 1000 genes: {'ATG': 912, 'GTG': 66, 'TTG': 18, 'ATT': 2, 'CTG': 2}
+Start codon read as Methionine: 1000/1000
+Whole CDS translates to the protein length in the table: 999/1000
+
+======================================================================
+Q1 - standard local search for WWWW
+======================================================================
+Best score distribution: {4: 995, 3: 5}
+Genes with an intact WWWW: 995/1000 (99.5%)
+Upstream position of the hit: median -90, IQR -97 to -77, 135 hits at -100, 720 hits at -80 or further
+WWWW occurrences per sequence: mean 12.2, median 11, range 0-42
+If I took the LAST hit (closest to the gene) instead: median -14
+  no hit: IUJ38_RS00165 holB  best score 3, GC 65%, 100% of the upstream bases are inside another gene
+  no hit: IUJ38_RS03200   best score 3, GC 61%, 100% of the upstream bases are inside another gene
+  no hit: IUJ38_RS04555 pduS  best score 3, GC 65%, 100% of the upstream bases are inside another gene
+  no hit: IUJ38_RS08160 srlE  best score 3, GC 64%, 100% of the upstream bases are inside another gene
+  no hit: IUJ38_RS11090 gltB  best score 3, GC 66%, 0% of the upstream bases are inside another gene
+
+======================================================================
+Q2 - consecutive Ws
+======================================================================
+Run length: mean 5.49, median 5, range 4-22
+Distribution: {4: 381, 5: 247, 6: 157, 7: 88, 8: 53, 9: 33, 10: 16, 11: 6, 12: 4, 13: 6, 14: 2, 22: 2}
+Runs of 8 or more: observed 122, expected for random bases 90
+Longest runs: [('chbC', -88, 'AATTAATTATTTTTTAATTTTT'), ('ftnA', -100, 'AATAATTAAATTTAATATTTTA')]
+
+======================================================================
+Q3 - position probability matrix
+======================================================================
+Number of 6-base sequences: 995 (239 different)
+Most common: [('AAAAAA', 18), ('TTTTTT', 15), ('TTTTTG', 15), ('ATTTTT', 14), ('TTTTGC', 11)]
+Frequency matrix (rows A C G T):
+[[517 449 483 485 293 268]
+ [  0   0   0   0 220 251]
+ [  0   0   0   0 161 203]
+ [478 546 512 510 321 273]]
+PPM:
+[[0.52  0.451 0.485 0.487 0.294 0.269]
+ [0.    0.    0.    0.    0.221 0.252]
+ [0.    0.    0.    0.    0.162 0.204]
+ [0.48  0.549 0.515 0.513 0.323 0.274]]
+Consensus ATTTTT, consensus score (sum of ln p) = -5.012
+Information content per position (bits): [1.001 1.007 1.    1.    0.047 0.009]  total 4.06
+
+======================================================================
+Q4 - statistical alignment
+======================================================================
+Threshold -1: 990/1000 detected (99.0%)
+Threshold -2: 995/1000 detected (99.5%)
+Threshold -3: 995/1000 detected (99.5%)
+Threshold -4: 995/1000 detected (99.5%)
+Threshold -5: 995/1000 detected (99.5%)
+Best score minus consensus: median -0.127, min -11.19
+Scores of the 5 genes without WWWW: [-11.19 -11.13 -11.01 -10.93 -10.9 ]
+Position of the best window (T = -2): median -51, IQR -76 to -28
+Most common best windows: [('ATTTTT', 113), ('ATTATT', 64), ('ATTTTA', 56), ('TTTTTT', 43), ('ATTTAT', 40)]; windows made only of A/T: 682
+Any window starting with WWWW scores at least -1.37 below the consensus
+
+======================================================================
+Q5 - comparison
+======================================================================
+Detected by both: 995; same position 179 (18.0%), within 2 bases 241 (24.2%)
+Statistical hit is never upstream of the local hit: True; median shift towards the gene 30 bases
+KS test between the two position distributions: D = 0.532, p = 5.06e-129
+Mean A/T run at the hit: local 5.49, statistical 6.38
+Shuffled: intact WWWW in 97.8% (real 99.5%), 9.7 WWWW per sequence (real 12.2)
+Shuffled: statistical detection -1: 96.2%, -2: 97.6%, -3: 97.6%, -4: 97.6%, -5: 97.6%
+Shuffled: local-search position median -88, statistical position median -54
+  -100 to -26  local  98.6% (shuffled  97.7%)   statistical  77.6% (shuffled  79.1%)
+  -25 to -14   local   1.1% (shuffled   1.5%)   statistical  16.1% (shuffled  12.5%)
+  -13 to -9    local   0.0% (shuffled   0.4%)   statistical   1.6% (shuffled   5.1%)
+  -8 to -6     local   0.3% (shuffled   0.2%)   statistical   4.7% (shuffled   3.2%)
+Upstream region overlaps another gene: 466 genes (428 of them right after another + strand gene, like inside an operon)
+  WWWW found in 99.1% of these and in 99.8% of the free (intergenic) ones
+Random bases with P(W) = 0.549: expected 8.8 WWWW per sequence, P(at least one) = 0.994
